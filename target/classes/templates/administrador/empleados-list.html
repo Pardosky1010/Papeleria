@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!--FAVICON-->
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/3361/3361414.png" type="image/x-icon">
+
+	<!--FONT-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+
+	<title>Lista Empleados - Admin</title>
+	<style>
+		body {
+			background-image: url(https://fondosmil.com/fondo/17553.jpg);
+			background-position: center center;
+			background-attachment: fixed;
+			font-family: 'Righteous', cursive;
+		}
+
+		#nav_princ {
+			height: 150px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		.button_ingreso {
+			background-color: #D8375A;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+			color: black;
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: 0.5%;
+			border: 3px solid white;
+			border-radius: 5px;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			/* Espacio entre los botones */
+		}
+
+		.button_ingreso:hover {
+			background-color: #000000;
+			/* Cambia el color de fondo al pasar el cursor por encima */
+			color: black;
+			/* Cambia el color del texto al pasar el cursor por encima */
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			/* Agrega una sombra al pasar el cursor por encima */
+		}
+
+		footer {
+			width: 100%;
+			text-align: center;
+			padding: 20px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			font-size: 15px;
+			border-top: 3px solid white;
+			display: inline-block;
+			font-family: 'Roboto Slab', serif;
+		}
+
+		table {
+			font-family: 'Kdam Thmor Pro', sans-serif;
+			width: 90%;
+			border-collapse: collapse;
+			text-align: center;
+		}
+
+		table th,
+		table td {
+			border: 1px solid black;
+			padding: 5px;
+
+		}
+
+		table tr:nth-child(even) {
+			background-color: lightgray;
+		}
+
+		table tr:not(:nth-child(even)) td {
+			background-color: white;
+		}
+
+		main h1 {
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div
+			style="display: flex; justify-content: center; align-items: center;  background:  #F1C40F; border-bottom: 5px solid black; height: 40px;">
+			<marquee behavior="scroll" direction="left">
+				<span class="" style="color: dark;">"Encuentra todo lo que necesitas en un solo lugar" - "Grandes
+					experiencias con una buena oportunidad"</span>
+			</marquee>
+		</div>
+
+		<!-- NAV -->
+		<nav id="nav_princ" class="navbar navbar-expand-lg navbar-dark"
+			style="background: linear-gradient(to right, #ffffff, #ffffff,#ffffff); border-bottom: 5px solid black;">
+
+			<a th:href="@{/administrador}">
+				<div style="display: inline-block;" class="ml-4">
+					<img src="https://cdn-icons-png.flaticon.com/512/1165/1165787.png"
+						style="height: 120px;  vertical-align: middle;">
+				</div>
+			</a>
+
+			<div class="ml-auto mr-4" style="padding: 0px;">
+				<span class="" style="font-size: 90px;" href="#">Papeleria Spectrum</span>
+			</div>
+
+			<div class="ml-auto mr-4" style="display: inline-block;">
+				<button class="button_ingreso">
+					<a th:href="@{/}" style=" text-decoration: none; ">
+						<span
+							style="color: white;  font-family: 'Roboto Slab', serif; font-weight: bolder; font-size: 120%; padding-left: 5px; padding-right: 5px;">Cerrar
+							sesión</spa>
+					</a>
+				</button>
+			</div>
+		</nav>
+		<!-- NAV -->
+
+		<div style="background: linear-gradient(to right,black,black); border-bottom: 5px solid black; padding: 7px;">
+			<div class="button-container">
+				<a th:href="@{/administradores/}" style="text-decoration: none;">
+					<button class="btn btn-secondary"
+						style="color: black; border: 2px solid black; background-color: white;">ADMINISTRADORES</button>
+				</a>
+
+				<a th:href="@{/empleados/}" style="text-decoration: none;">
+					<button class="btn btn-secondary"
+						style="color: black; border: 2px solid black; background-color: white;">EMPLEADOS</button>
+				</a>
+
+				<a th:href="@{/clientes/}" style="text-decoration: none;">
+					<button class="btn btn-secondary"
+						style="color: black; border: 2px solid black; background-color: white;">CLIENTES</button>
+				</a>
+
+				<a th:href="@{/productos/list/}" style="text-decoration: none;">
+					<button class="btn btn-secondary"
+						style="color: black; border: 2px solid black; background-color: white;">PRODUCTOS</button>
+				</a>
+
+
+
+			</div>
+		</div>
+	</header>
+
+	<main style="margin-top: 15px;">
+		<h1>DATOS EMPLEADOS</h1>
+
+		<center>
+			<a th:href="@{/empleados/new}" style="text-decoration: none; justify-content: center;">
+				<button class="btn btn-secondary" style="border: 2px solid black; background-color: #2C78FD;"
+					type="button">AGREGAR</button>
+			</a>
+		</center>
+
+		<center>
+			<table style="margin-bottom: 25px; margin-top: 10px;">
+				<thead style="background-color: #D8375A;">
+					<tr>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Documento</th>
+						<th>Email</th>
+						<th>Teléfono</th>
+						<th>Usuario</th>
+						<th>Clave</th>
+						<th class="centrar_table"><strong>Editar</strong></th>
+						<th class="centrar_table"><strong>Eliminar</strong></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="empleado : ${empleados}">
+						<td>[[ ${empleado.nombre} ]]</td>
+						<td>[[ ${empleado.apellido} ]]</td>
+						<td>[[ ${empleado.documento} ]]</td>
+						<td>[[ ${empleado.email} ]]</td>
+						<td>[[ ${empleado.telefono} ]]</td>
+						<td>[[ ${empleado.user} ]]</td>
+						<td>[[ ${empleado.password} ]]</td>
+						<td class="centrar_table">
+							<a class="mx-3 text-warning" th:href="@{/empleados/edit/{id}(id = ${empleado.id})}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+									class="bi bi-pencil-square" viewBox="0 0 16 16">
+									<path
+										d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+									<path fill-rule="evenodd"
+										d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+								</svg>
+							</a>
+						</td>
+						<td class="centrar_table">
+							<a class="mx-3 text-danger" th:href="@{/empleados/delete/{id}(id = ${empleado.id})}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+									class="bi bi-x-square" viewBox="0 0 16 16">
+									<path
+										d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+									<path
+										d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+								</svg>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</center>
+
+
+	</main>
+
+
+</body>
+<footer class="sticky-footer text-dark"
+	style="background: linear-gradient(to right,#F7F7F7,#F7F7F7); border-top: 5px solid black;">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 text-center column">
+				<a th:href="@{/}">
+					<div style="display: inline-block; margin-top: 10px;">
+						<img src="https://cdn-icons-png.flaticon.com/512/1165/1165787.png"
+							style="height: 120px;  vertical-align: middle;">
+					</div>
+				</a>
+
+				<div class="text-center" style="padding: 0px;">
+					<span class="" style="font-size: 30px;" href="#"><strong>Papeleria Spectrum</strong> </span>
+				</div>
+
+				<div class="text-center" style="padding: 0px; margin-top: 5px;">
+					<p class="" style="font-size: 13px;" href="#">Somos más que una papelería, aquí también podrás
+						encontrar portafolio de: Hogar, tecnología, juguetería, electromenores, mascotas, y muchas
+						más... </p>
+				</div>
+			</div>
+
+			<div class="col-md-4 text-center" style="margin-top: 10px;">
+				<img src="https://cdn-icons-png.flaticon.com/128/1321/1321739.png" alt=""
+					style="width: 65px; margin: 5px;">
+				<br>
+				<a style="font-weight: bold; font-size: 30px;">Soporte</a>
+				<div style="margin-top: 5px;">
+					<a style="color: black; font-weight: bolder; margin-bottom: 10px;" href="">Acerca de Nosotros</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Políticas de Privacidad</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Términos y condiciones</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Políticas de envío</a>
+				</div>
+			</div>
+
+			<div class="col-md-4 text-center">
+				<a style="font-weight: bold; font-size: 25px; margin-bottom: 100px;">Redes Sociales</a>
+				<div style="margin-top: 5px; margin-bottom: 15px;">
+					<span style="font-weight: bolder; ">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494477.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494488.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494479.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494485.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+				</div>
+
+				<a style="font-weight: bold; font-size: 25px; margin-bottom: 100px;">Contáctanos</a>
+				<div style="margin-top: 5px;">
+					<a style="font-weight: bold;"><img src="https://cdn-icons-png.flaticon.com/128/3059/3059502.png"
+							alt="" style="width: 25px; margin: 5px;">+57 (315) 3281327</a>
+					<br>
+					<a href="mailto:ecommerce@papeleriaspectrum.com" style="font-weight: bold; color: black"><img
+							src="https://cdn-icons-png.flaticon.com/128/95/95645.png" alt=""
+							style="width: 25px; margin: 5px;">ecommerce@papeleriaspectrum.com</a>
+					<br>
+					<a th:href="@{/productos/puntosad/}" style="font-weight: bold; color:black"><img
+							src="https://cdn-icons-png.flaticon.com/128/535/535188.png" alt=""
+							style="width: 25px; margin: 5px;">Puntos Atención al Cliente</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="display: inline-block; margin-top: 20px;">
+		<img src="https://img.uefa.com/imgml/2016/euro/common-elements/appstore.png?imwidth=166" alt=""
+			style="width: 110px; margin-left: 15px; margin-right: 15px;">
+		<img src="https://img.uefa.com/imgml/2016/euro/common-elements/googleplay.png?imwidth=166" alt=""
+			style="width: 110px; margin-left: 15px; margin-right: 15px;">
+	</div>
+
+	<div class="container" style="display: inline-block;">
+		<div class="">
+			<p style="margin-top: 20px;"><strong>Copyright © 2023 </strong>- Prohibida la reproducción total o parcial,
+				así
+				como su traducción
+				a cualquier idioma sin autorización escrita del titular.</p>
+			<p style="margin-top: 10px;"><strong>Creado por: </strong>Oscar Yair Pardo Pineda - Jose Daniel Ortiz Rico
+			</p>
+		</div>
+	</div>
+
+	<div>Papeleria SPECTRUM © - Powered by Mercado Shops · Design and developed by&nbsp;</div>
+</footer>
+
+</html>

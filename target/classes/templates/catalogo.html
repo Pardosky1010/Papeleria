@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!--FAVICON-->
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/3361/3361414.png" type="image/x-icon">
+
+	<!--FONT-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+
+	<title>Catalogo</title>
+	<style>
+		body {
+			background-image: url(https://fondosmil.com/fondo/17553.jpg);
+			background-position: center center;
+			background-attachment: fixed;
+			font-family: 'Righteous', cursive;
+		}
+
+		#nav_princ {
+			height: 150px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		.button_ingreso {
+			background-color: #D8375A;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+			color: black;
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: 0.5%;
+			border: 3px solid white;
+			border-radius: 5px;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			/* Espacio entre los botones */
+		}
+
+		.button_ingreso:hover {
+			background-color: #000000;
+			/* Cambia el color de fondo al pasar el cursor por encima */
+			color: black;
+			/* Cambia el color del texto al pasar el cursor por encima */
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			/* Agrega una sombra al pasar el cursor por encima */
+		}
+
+		footer {
+			width: 100%;
+			text-align: center;
+			padding: 20px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			font-size: 15px;
+			border-top: 3px solid white;
+			display: inline-block;
+			font-family: 'Roboto Slab', serif;
+		}
+
+		table {
+			font-family: 'Kdam Thmor Pro', sans-serif;
+			width: 90%;
+			border-collapse: collapse;
+			text-align: center;
+		}
+
+		table th,
+		table td {
+			border: 1px solid black;
+			padding: 5px;
+
+		}
+
+		table tr:nth-child(even) {
+			background-color: lightgray;
+		}
+
+		table tr:not(:nth-child(even)) td {
+			background-color: white;
+		}
+
+		main h1 {
+			text-align: center;
+		}
+
+		/* Estilos para la sección de productos */
+		.products {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin-top: 40px;
+		}
+
+		/* Estilos para cada producto individual */
+		.product {
+			background-color: white;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			margin: 10px;
+			padding: 15px;
+			text-align: center;
+			align-items: center;
+			width: 300px;
+			/* Ancho fijo para cada producto */
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.product img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		.product h3 {
+			font-size: 18px;
+			margin-top: 10px;
+		}
+
+		.product p {
+			font-size: 14px;
+			margin-top: 10px;
+		}
+
+		.btn {
+			display: inline-block;
+			text-align: center;
+			text-decoration: none;
+			color: white;
+			background-color: #61D250;
+			/* Cambia el color a tu preferencia */
+			border-radius: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div
+			style="display: flex; justify-content: center; align-items: center;  background:  #F1C40F; border-bottom: 5px solid black; height: 40px;">
+			<marquee behavior="scroll" direction="left">
+				<span class="" style="color: dark;">"Encuentra todo lo que necesitas en un solo lugar" - "Grandes
+					experiencias con una buena oportunidad"</span>
+			</marquee>
+		</div>
+
+		<!-- NAV -->
+		<nav id="nav_princ" class="navbar navbar-expand-lg navbar-dark"
+			style="background: linear-gradient(to right, #ffffff, #ffffff,#ffffff); border-bottom: 5px solid black;">
+
+			<a th:href="@{/}">
+				<div style="display: inline-block;" class="ml-4">
+					<img src="https://cdn-icons-png.flaticon.com/512/1165/1165787.png"
+						style="height: 120px;  vertical-align: middle;">
+				</div>
+			</a>
+
+			<div class="ml-auto mr-4" style="padding: 0px;">
+				<span style="font-size: 90px;" href="#">Papeleria Spectrum</span>
+			</div>
+
+			<div class="ml-auto mr-4" style="display: inline-block;">
+
+			</div>
+		</nav>
+		<!-- NAV -->
+
+	</header>
+
+	<section class="products" style="margin-bottom: 40px;">
+		<!-- Producto 1 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_0c4a8373aac5a26ed68d43026f8ceea973de36601612729865.jpg"
+				alt="Producto 1">
+			<h3 style="color: black;">BOLIGRAFO 0.7 SEMI-GEL 076F COLOR STDO OFFIESCO</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 750</p>
+
+		</div>
+		<!-- Producto 2 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_63526d6cd8ff952a586eb3ae72e68b41bbf7dd761672843114.webp"
+				alt="Producto 1">
+			<h3 style="color: black;">COLOR JUMBO X12 TRIANG-SACAP PELIKAN</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 17,850</p>
+
+		</div>
+		<!-- Producto 3 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_084ad2876510384a0d40d551077cc37b4b0e8c131589929301.jpg"
+				alt="Producto 1">
+			<h3 style="color: black;">PINTUBARRITAS X6 UNIDADES NORMA</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 22,050</p>
+
+		</div>
+		<!-- Producto 1 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_7decbcbd8b78fbbbee7a8eb2e8c5f51abc9c54171594833566.jpg"
+				alt="Producto 1">
+			<h3 style="color: black;">SEPARADOR 105 PLASTICO HOMB-MUJER 298 PRIMAVERA</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 5,050</p>
+
+		</div>
+		<!-- Producto 2 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_f85bf614812f006994c5588ad1690fb440b73ff21652626178.jpg"
+				alt="Producto 1">
+			<h3 style="color: black;">COLOR MAGICOLOR X12+3 META</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 13,750</p>
+
+		</div>
+		<!-- Producto 3 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_3c0c122e92c047730f929c3cdb81f140c6032f9e1619277174.jpg"
+				alt="Producto 1">
+			<h3 style="color: black;">MORRAL PERSONAJE NIÑA-NIÑO 16 5 TROLLY PRIMAVERA</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 136,500</p>
+
+		</div>
+		<!-- Producto 2 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_966232df62176ce5106f80edcc866f1e321cbf501654607266.jpg"
+				alt="Producto 1">
+			<h3 style="color: black;">MARCADOR E-4095 2-3MM COLOR STDO EDDING</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 9,750</p>
+
+		</div>
+		<!-- Producto 3 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_5d0184914b460cc3351564a4af08f64aa9b881b31673466679.webp"
+				alt="Producto 1">
+			<h3 style="color: black;">CARPETA LEG PLAST OFICIO SOLIDO-PASTEL 809 OFFIESCO</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 2,650</p>
+
+		</div>
+
+		<!-- Producto 3 -->
+		<div class="product" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+			<img style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);"
+				src="https://www.papeleriaoriental.com/app_data_archivos/papeleriaoriental.soomi.co/productos/producto_3e3d434c8cef390a42a99a49da2960cefc002c781599138981.jpeg"
+				alt="Producto 1">
+			<h3 style="color: black;">PLUMON PUNTA PINCEL X10 FABER</h3>
+			<p style="font-size: 20px; color: #2C78FD;">$ 21,300</p>
+
+		</div>
+	</section>
+
+
+</body>
+<footer class="sticky-footer text-dark"
+	style="background: linear-gradient(to right,#F7F7F7,#F7F7F7); border-top: 5px solid black;">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 text-center column">
+				<a th:href="@{/}">
+					<div style="display: inline-block; margin-top: 10px;">
+						<img src="https://cdn-icons-png.flaticon.com/512/1165/1165787.png"
+							style="height: 120px;  vertical-align: middle;">
+					</div>
+				</a>
+
+				<div class="text-center" style="padding: 0px;">
+					<span class="" style="font-size: 30px;" href="#"><strong>Papeleria Spectrum</strong> </span>
+				</div>
+
+				<div class="text-center" style="padding: 0px; margin-top: 5px;">
+					<p class="" style="font-size: 13px;" href="#">Somos más que una papelería, aquí también podrás
+						encontrar portafolio de: Hogar, tecnología, juguetería, electromenores, mascotas, y muchas
+						más... </p>
+				</div>
+			</div>
+
+			<div class="col-md-4 text-center" style="margin-top: 10px;">
+				<img src="https://cdn-icons-png.flaticon.com/128/1321/1321739.png" alt=""
+					style="width: 65px; margin: 5px;">
+				<br>
+				<a style="font-weight: bold; font-size: 30px;">Soporte</a>
+				<div style="margin-top: 5px;">
+					<a style="color: black; font-weight: bolder; margin-bottom: 10px;" href="">Acerca de Nosotros</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Políticas de Privacidad</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Términos y condiciones</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Políticas de envío</a>
+				</div>
+			</div>
+
+			<div class="col-md-4 text-center">
+				<a style="font-weight: bold; font-size: 25px; margin-bottom: 100px;">Redes Sociales</a>
+				<div style="margin-top: 5px; margin-bottom: 15px;">
+					<span style="font-weight: bolder; ">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494477.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494488.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494479.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494485.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+				</div>
+
+				<a style="font-weight: bold; font-size: 25px; margin-bottom: 100px;">Contáctanos</a>
+				<div style="margin-top: 5px;">
+					<a style="font-weight: bold;"><img src="https://cdn-icons-png.flaticon.com/128/3059/3059502.png"
+							alt="" style="width: 25px; margin: 5px;">+57 (315) 3281327</a>
+					<br>
+					<a href="mailto:ecommerce@papeleriaspectrum.com" style="font-weight: bold; color: black"><img
+							src="https://cdn-icons-png.flaticon.com/128/95/95645.png" alt=""
+							style="width: 25px; margin: 5px;">ecommerce@papeleriaspectrum.com</a>
+					<br>
+					<a th:href="@{/productos/puntos/}" style="font-weight: bold; color:black"><img
+							src="https://cdn-icons-png.flaticon.com/128/535/535188.png" alt=""
+							style="width: 25px; margin: 5px;">Puntos Atención al Cliente</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="display: inline-block; margin-top: 20px;">
+		<img src="https://img.uefa.com/imgml/2016/euro/common-elements/appstore.png?imwidth=166" alt=""
+			style="width: 110px; margin-left: 15px; margin-right: 15px;">
+		<img src="https://img.uefa.com/imgml/2016/euro/common-elements/googleplay.png?imwidth=166" alt=""
+			style="width: 110px; margin-left: 15px; margin-right: 15px;">
+	</div>
+
+	<div class="container" style="display: inline-block;">
+		<div class="">
+			<p style="margin-top: 20px;"><strong>Copyright © 2023 </strong>- Prohibida la reproducción total o parcial,
+				así
+				como su traducción
+				a cualquier idioma sin autorización escrita del titular.</p>
+			<p style="margin-top: 10px;"><strong>Creado por: </strong>Oscar Yair Pardo Pineda - Jose Daniel Ortiz Rico
+			</p>
+		</div>
+	</div>
+
+	<div>Papeleria SPECTRUM © - Powered by Mercado Shops · Design and developed by&nbsp;</div>
+</footer>
+
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Login</title>
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!--FAVICON-->
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/1205/1205526.png" type="image/x-icon">
+
+	<!--FONT-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
+	<!--FAVICON-->
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/3361/3361414.png" type="image/x-icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			font-family: 'Righteous', cursive;
+		}
+
+		a {
+			color: #666;
+			font-size: 14px;
+			display: block;
+		}
+
+		.login-title {
+			text-align: center;
+		}
+
+		#login-page {
+			display: flex;
+		}
+
+		.notice {
+			font-size: 13px;
+			text-align: center;
+			color: #666;
+		}
+
+		.login {
+			width: 30%;
+			height: 100vh;
+			background-color: #E8F6F3;
+			padding: 70px;
+		}
+
+		.login a {
+			margin-top: 25px;
+			text-align: center;
+		}
+
+		.form-login {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			align-content: center;
+		}
+
+		.form-login label {
+			text-align: left;
+			font-size: 13px;
+			margin-top: 10px;
+			margin-left: 20px;
+			display: block;
+			color: #666;
+		}
+
+		.input-email,
+		.input-password {
+			width: 100%;
+			background: #ffffff;
+			border-radius: 25px;
+			margin: 4px 0 10px 0;
+			padding: 10px;
+			display: flex;
+		}
+
+		.icon {
+			padding: 4px;
+			color: #666;
+			min-width: 30px;
+			text-align: center;
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			width: 100%;
+			border: 0;
+			background: none;
+			font-size: 16px;
+			padding: 4px 0;
+			outline: none;
+		}
+
+		button[type="submit"] {
+			width: 100%;
+			border: 0;
+			border-radius: 25px;
+			padding: 14px;
+			background: #008552;
+			color: #FFF;
+			display: inline-block;
+			cursor: pointer;
+			font-size: 16px;
+			margin-top: 10px;
+			transition: ease all 0.3s;
+		}
+
+		button[type="submit"]:hover {
+			opacity: 0.9;
+		}
+
+		.background {
+			width: 70%;
+			padding: 40px;
+			height: 100vh;
+			background-image: url(https://img.freepik.com/vector-premium/escuela-educacion-patrones-fisuras-material-vector-papeleria-fondo-blanco_341076-373.jpg);
+			background-position: center center;
+			background-attachment: fixed;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: flex-end;
+			justify-content: flex-end;
+			align-content: center;
+			flex-direction: row;
+		}
+
+		.created {
+			margin-top: 40px;
+			text-align: center;
+		}
+
+		.created p {
+			font-size: 13px;
+			font-weight: bold;
+			color: #008552;
+		}
+
+		.created a {
+			color: #666;
+			font-weight: normal;
+			text-decoration: none;
+			margin-top: 0;
+		}
+
+		.checkbox label {
+			display: inline;
+			margin: 0;
+		}
+
+		/*ANIMATION*/
+
+		.circles {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 78%;
+			height: 100%;
+			overflow: hidden;
+			margin-left: 320px;
+		}
+
+		.circles li {
+			position: absolute;
+			z-index: 9;
+			display: block;
+			list-style: none;
+			width: 50px;
+			height: 20px;
+			background: rgba(0, 0, 0, 0.9);
+			animation: animate 25s linear infinite;
+			bottom: -150px;
+		}
+
+		.circles li:nth-child(1) {
+			left: 25%;
+			width: 40px;
+			height: 40px;
+			animation-delay: 0s;
+		}
+
+		.circles li:nth-child(2) {
+			left: 10%;
+			width: 20px;
+			height: 20px;
+			animation-delay: 1s;
+			animation-duration: 12s;
+		}
+
+		.circles li:nth-child(3) {
+			left: 70%;
+			width: 20px;
+			height: 20px;
+			animation-delay: 2s;
+		}
+
+		.circles li:nth-child(4) {
+			left: 40%;
+			width: 35px;
+			height: 35px;
+			animation-delay: 0s;
+			animation-duration: 5s;
+		}
+
+		.circles li:nth-child(5) {
+			left: 65%;
+			width: 20px;
+			height: 20px;
+			animation-delay: 0s;
+		}
+
+		.circles li:nth-child(6) {
+			left: 75%;
+			width: 30px;
+			height: 30px;
+			animation-delay: 3s;
+		}
+
+		.circles li:nth-child(7) {
+			left: 35%;
+			width: 35px;
+			height: 35px;
+			animation-delay: 4s;
+		}
+
+		.circles li:nth-child(8) {
+			left: 50%;
+			width: 25px;
+			height: 25px;
+			animation-delay: 1s;
+			animation-duration: 6s;
+		}
+
+		.circles li:nth-child(9) {
+			left: 20%;
+			width: 15px;
+			height: 15px;
+			animation-delay: 4s;
+			animation-duration: 8s;
+		}
+
+		.circles li:nth-child(10) {
+			left: 85%;
+			width: 35px;
+			height: 35px;
+			animation-delay: 0s;
+			animation-duration: 5s;
+		}
+
+		@keyframes animate {
+			0% {
+				transform: translateY(0) rotate(0deg);
+				opacity: 1;
+				border-radius: 0;
+			}
+
+			100% {
+				transform: translateY(-1000px) rotate(720deg);
+				opacity: 0;
+				border-radius: 50%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="login-page">
+
+		<div class="login">
+			<h2 class="login-title">LOGIN</h2>
+			<p class="notice">Por favor inicie sesión para acceder al sistema</p>
+
+			<form action="/login/ingresar" class="form-login" method="post">
+
+				<label for="user">Usuario</label>
+				<div class="input-email">
+					<i class="fas fa-envelope icon"></i>
+					<input type="text" name="user" placeholder="Digite su usuario" required>
+				</div>
+
+				<label for="password">Contraseña</label>
+				<div class="input-password">
+					<i class="fas fa-lock icon"></i>
+					<input type="password" name="password" placeholder="Digite su contraseña" required>
+				</div>
+
+				<button type="submit"><i class="fas fa-door-open"></i>Iniciar Sesión</button>
+
+				<center>
+					<div th:if="${param.error}" style="color: red;">
+						<p th:text="${param.error}"></p>
+					</div>
+				</center>
+			</form>
+
+			<div class="created">
+				<p>Created by <a href="">Oscar Pardo - Jose Ortiz</a></p>
+			</div>
+
+			<a th:href="@{/login/registro}" method="post">
+				<button type="submit"><i class="fas fa-door-open"></i>Registrarse</button>
+			</a>
+
+			<center>
+				<div style="margin-top: 30px; margin-bottom: 15px;">
+					<span style="font-weight: bolder; ">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494477.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494488.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494479.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494485.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+				</div>
+			</center>
+		</div>
+
+		<div class="background">
+			<h1></h1>
+			<ul class="circles">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
