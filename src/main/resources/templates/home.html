@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Principal</title>
+	<meta charset="utf-8">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!--FAVICON-->
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/3361/3361414.png" type="image/x-icon">
+
+	<!--FONT-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+
+
+	<style>
+		body {
+			background-image: url(https://fondosmil.com/fondo/17553.jpg);
+			background-position: center center;
+			background-attachment: fixed;
+			font-family: 'Righteous', cursive;
+		}
+
+		#nav_princ {
+			height: 150px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		.button_ingreso {
+			background-color: #D8375A;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+			color: black;
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: 0.5%;
+			border: 3px solid white;
+			border-radius: 5px;
+		}
+
+		.button_ingreso:hover {
+			background-color: #000000;
+			/* Cambia el color de fondo al pasar el cursor por encima */
+			color: black;
+			/* Cambia el color del texto al pasar el cursor por encima */
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			/* Agrega una sombra al pasar el cursor por encima */
+		}
+
+		/* Estilos para la sección de productos */
+		.products {
+			margin-top: 20px;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		/* Estilos para cada producto individual */
+		.product {
+			background-color: #f5f5f5;
+			border: 1px solid #ddd;
+			border-radius: 15px;
+			margin: 10px;
+			padding: 15px;
+			text-align: center;
+			width: 300px;
+			/* Ancho fijo para cada producto */
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.product img {
+			align-items: center;
+			max-width: 68%;
+			height: auto;
+		}
+
+		.product h3 {
+			font-size: 18px;
+			margin-top: 10px;
+		}
+
+		.product p {
+			font-size: 14px;
+			margin-top: 10px;
+		}
+
+		.product a {
+			color: #007bff;
+			text-decoration: none;
+			font-weight: bold;
+		}
+
+		.product a:hover {
+			text-decoration: underline;
+		}
+
+		footer {
+			width: 100%;
+			text-align: center;
+			padding: 20px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			font-size: 15px;
+			border-top: 3px solid white;
+			display: inline-block;
+			font-family: 'Roboto Slab', serif;
+		}
+
+		/* CARRUSEL */
+
+		.carousel-inner {
+			height: 600px;
+			/* Puedes ajustar la altura según tus necesidades */
+		}
+
+		.carousel-inner img {
+			object-fit: cover;
+			/* Mantiene la relación de aspecto y ajusta la imagen dentro del contenedor */
+			height: 100%;
+			/* Ocupa la altura completa del carrusel */
+			width: 100%;
+			/* Ocupa el ancho completo del carrusel */
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			/* Espacio entre los botones */
+		}
+
+		.custom-div {
+			box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.5);
+			/* Agrega una sombra al div */
+		}
+
+		.contenedor-imagen {
+			max-width: 100%;
+			height: auto;
+			overflow: hidden;
+			/* Opcional: para evitar que la imagen se desborde del contenedor */
+		}
+
+		.contenedor-imagen img {
+			width: 66%;
+			height: auto;
+		}
+
+		.noticias {
+			background-color: #f2f2f2;
+			padding: 20px;
+			border: 1px solid #ddd;
+			border-radius: 10px;
+		}
+
+		/* Estilo para cada noticia */
+		.noticia {
+			background-color: white;
+			padding: 10px;
+			margin: 15px 0;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			display: flex;
+		}
+
+		/* Estilo para la imagen de la noticia */
+		.imagen {
+			width: 330px;
+
+			margin-right: 10px;
+		}
+
+		/* Estilo para el título de la noticia */
+		.titulo {
+			font-size: 2em;
+			font-weight: bold;
+		}
+
+		/* Estilo para el cuerpo de la noticia */
+		.cuerpo {
+			font-size: 1em;
+		}
+
+		.video-container {
+			position: relative;
+			padding-bottom: 30%;
+			/* Proporción 16:9 (873/491) */
+			overflow: hidden;
+			max-width: 70%;
+			border-radius: 10px;
+			margin-top: 25px;
+		}
+
+		.video-container iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 80%;
+		}
+
+		/*
+		.dropdown-menu {
+      		background-color: #fff; 
+      		border: 1px solid #ccc;
+      		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    	}
+    	
+    	.dropdown-item {
+      		color: #333; 
+    	}
+    	
+    	.dropdown-item:hover {
+      		background-color: #f5f5f5;  
+    	} 
+    	*/
+	</style>
+
+</head>
+
+<body>
+
+	<header>
+		<div
+			style="display: flex; justify-content: center; align-items: center;  background:  #F1C40F; border-bottom: 5px solid black; height: 40px;">
+			<marquee behavior="scroll" direction="left">
+				<span class="" style="color: dark;">"Encuentra todo lo que necesitas en un solo lugar" - "Grandes
+					experiencias con una buena oportunidad"</span>
+			</marquee>
+		</div>
+
+		<!-- NAV -->
+		<nav id="nav_princ" class="navbar navbar-expand-lg navbar-dark"
+			style="background: linear-gradient(to right, #ffffff, #ffffff,#ffffff); border-bottom: 5px solid black;">
+
+			<a th:href="@{/}">
+				<div style="display: inline-block;" class="ml-4">
+					<img src="https://cdn-icons-png.flaticon.com/512/1165/1165787.png"
+						style="height: 120px;  vertical-align: middle;">
+				</div>
+			</a>
+
+			<div class="ml-auto mr-4" style="padding: 0px;">
+				<span class="" style="font-size: 90px;" href="#">Papeleria Spectrum</span>
+			</div>
+
+			<div class="ml-auto mr-4" style="display: inline-block;">
+				<button class="button_ingreso">
+					<a th:href="@{/login/}" style=" text-decoration: none; ">
+						<span
+							style="color: white;  font-family: 'Roboto Slab', serif; font-weight: bolder; font-size: 120%; padding-left: 5px; padding-right: 5px;">Iniciar
+							sesión</spa>
+					</a>
+				</button>
+			</div>
+		</nav>
+		<!-- NAV -->
+
+		<div style="background: linear-gradient(to right,black,black); border-bottom: 5px solid black; padding: 7px;">
+			<!--<div class="">
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+						data-bs-toggle="dropdown" aria-expanded="false">
+						CATEGORIAS
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<li><a class="dropdown-item" href="/inventario/lista">INVENTARIO</a></li>
+						<li><a class="dropdown-item" href="/reportecompras/lista">COMPRAS MENSUALES</a></li>
+						<li><a class="dropdown-item" href="/productomc/lista">PRODUCTOS MAS COMPRADOS</a></li>
+					</ul>
+				</div>
+			</div>-->
+			<div class="button-container">
+				<a th:href="@{/productos/}" style="text-decoration: none;">
+					<button class="btn btn-secondary"
+						style="color: black; border: 2px solid black; background-color: white;">🔥 CATALOGO DE PRODUCTOS
+						🔥</button>
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<main>
+
+		<!-- CARRUSEL -->
+		<div style="margin-bottom: 30px;" id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item" data-bs-interval="3000">
+					<img src="https://muchosnegociosrentables.com/wp-content/uploads/2020/07/como-iniciar-una-papeleria-pequena.jpg"
+						class="d-block w-100">
+				</div>
+				<div class="carousel-item" data-bs-interval="3000">
+					<img src="https://camaralibreriassantacruz.files.wordpress.com/2017/01/cropped-la-latina-libreria-papeleria-cartulinas-y-cuadernos-madrid1.jpg"
+						class="d-block w-100" alt="Liga Española de futbol">
+				</div>
+				<div class="carousel-item active" data-bs-interval="3000">
+					<img src="https://ccsantamonicarivas.com/wp-content/uploads/2019/10/750A8697.jpg"
+						class="d-block w-100">
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+				data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+				data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+		<div class="custom-div"
+			style="background: linear-gradient(to right, #2C78FD, #2C78FD,#2C78FD); border-bottom: 2px solid black; border-top: 2px solid black;">
+			<center>
+				<span style="font-weight: bolder; color: white; font-size: 40px;"> 🌟 NOVEDADES 🌟 </span>
+			</center>
+		</div>
+
+		<center>
+			<div class="video-container">
+				<iframe style="margin-top: 25px; margin-bottom: 25px; border-radius: 15px; border: 2px solid black;"
+					src="https://www.youtube.com/embed/t_BOjxtTff4?list=PLs6o9TrYMbj4o3ERQbbf9G4y_rVvhDNqY"
+					frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen></iframe>
+			</div>
+		</center>
+
+		<div class="custom-div"
+			style="background: linear-gradient(to right, #D8375A, #D8375A,#D8375A); border-bottom: 2px solid black; border-top: 2px solid black;">
+			<center>
+				<span style="font-weight: bolder; color: white; font-size: 40px;"> 🌟 PRODUCTOS MAS POPULARES 🌟 </span>
+			</center>
+		</div>
+
+		<section class="products mb-4">
+			<!-- Producto 1 -->
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://http2.mlstatic.com/D_NQ_NP_894233-MLU69685839118_052023-W.webp" alt="Producto 1"
+					height="100px" class="">
+				<h3 style="color: black;">Marcador Punta Pincel Pelikan</h3>
+				<p style="color: black; font-size: 20px;">$28.500</p>
+			</div>
+			<!-- Producto 2 -->
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://http2.mlstatic.com/D_NQ_NP_2X_614472-MLA70534966536_072023-F.webp" alt="Producto 1"
+					height="100px">
+				<h3 style="color: black;">Lápices De Colores Prismacolor Set 132</h3>
+				<p style="color: black; font-size: 20px;">$677.900</p>
+			</div>
+			<!-- Producto 3 -->
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://http2.mlstatic.com/D_NQ_NP_2X_680491-MLU70639843235_072023-F.webp" alt="Producto 1"
+					height="100px">
+				<h3 style="color: black;">Lápices De Colores Norma, Caja Con 15 Piezas Punta + Gruesa</h3>
+				<p style="color: black; font-size: 20px;">$21.900</p>
+			</div>
+			<!-- Producto 4 -->
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://http2.mlstatic.com/D_NQ_NP_2X_655912-MCO43716711683_102020-F.webp" alt="Producto 1"
+					height="100px">
+				<h3 style="color: black;">Bolígrafo Kilométrico 100 X 12 - Unidad a $783</h3>
+				<p style="color: black; font-size: 20px;">$10.900</p>
+			</div>
+		</section>
+
+		<div class="custom-div"
+			style="background: linear-gradient(to right, #2C78FD, #2C78FD); border-bottom: 2px solid black; border-top: 2px solid black;">
+			<center>
+				<span style="font-weight: bolder; color: white; font-size: 40px;"> 🌟 MEJORES MARCAS 🌟 </span>
+			</center>
+		</div>
+
+		<section class="products mb-4">
+
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://mshopsoficiales.kubocloud.com/co/garabatos/casio.png" height="100px">
+			</div>
+
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://mshopsoficiales.kubocloud.com/co/garabatos/norma.png" height="100px">
+			</div>
+
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://mshopsoficiales.kubocloud.com/co/garabatos/papermate.png" height="100px">
+			</div>
+
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://mshopsoficiales.kubocloud.com/co/garabatos/doricolor.png" height="100px">
+			</div>
+
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://mshopsoficiales.kubocloud.com/co/garabatos/stabilo.png" height="100px">
+			</div>
+
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://mshopsoficiales.kubocloud.com/co/garabatos/magicolor.png" height="100px">
+			</div>
+
+			<div class="product" style="background-color: white; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+				<img src="https://mshopsoficiales.kubocloud.com/co/garabatos/parchesitos.png" height="100px">
+			</div>
+
+		</section>
+
+		<div class="contenedor-imagen">
+			<center style="margin-top: 25px">
+				<img src="https://www.suescun.com.co/wp-content/uploads/2022/06/ofertas-de-papeleria-movil.jpg"
+					width="auto" height="100%">
+			</center>
+		</div>
+
+		<div class="contenedor-imagen">
+			<center style="margin-top: 25px; margin-bottom: 20px;">
+				<img src="https://img.freepik.com/vector-premium/diseno-cartel-vector-venta-regreso-escuela-texto-venta-regreso-escuela-lapiz-color-garabato_572293-2371.jpg?w=1060"
+					width="auto" height="100%">
+			</center>
+		</div>
+	</main>
+
+	</main>
+</body>
+
+<footer class="sticky-footer text-dark"
+	style="background: linear-gradient(to right,#F7F7F7,#F7F7F7); border-top: 5px solid black;">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 text-center column">
+				<a th:href="@{/}">
+					<div style="display: inline-block; margin-top: 10px;">
+						<img src="https://cdn-icons-png.flaticon.com/512/1165/1165787.png"
+							style="height: 120px;  vertical-align: middle;">
+					</div>
+				</a>
+
+				<div class="text-center" style="padding: 0px;">
+					<span class="" style="font-size: 30px;" href="#"><strong>Papeleria Spectrum</strong> </span>
+				</div>
+
+				<div class="text-center" style="padding: 0px; margin-top: 5px;">
+					<p class="" style="font-size: 13px;" href="#">Somos más que una papelería, aquí también podrás
+						encontrar portafolio de: Hogar, tecnología, juguetería, electromenores, mascotas, y muchas
+						más... </p>
+				</div>
+			</div>
+
+			<div class="col-md-4 text-center" style="margin-top: 10px;">
+				<img src="https://cdn-icons-png.flaticon.com/128/1321/1321739.png" alt=""
+					style="width: 65px; margin: 5px;">
+				<br>
+				<a style="font-weight: bold; font-size: 30px;">Soporte</a>
+				<div style="margin-top: 5px;">
+					<a style="color: black; font-weight: bolder; margin-bottom: 10px;" href="">Acerca de Nosotros</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Políticas de Privacidad</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Términos y condiciones</a>
+					<br>
+					<a style="color: black; font-weight: bolder;" href="">Políticas de envío</a>
+				</div>
+			</div>
+
+			<div class="col-md-4 text-center">
+				<a style="font-weight: bold; font-size: 25px; margin-bottom: 100px;">Redes Sociales</a>
+				<div style="margin-top: 5px; margin-bottom: 15px;">
+					<span style="font-weight: bolder; ">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494477.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494488.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494479.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+					<img src="https://cdn-icons-png.flaticon.com/128/4494/4494485.png" alt="" style="width: 30px; ">
+					<span style="font-weight: bolder;">|</span>
+				</div>
+
+				<a style="font-weight: bold; font-size: 25px; margin-bottom: 100px;">Contáctanos</a>
+				<div style="margin-top: 5px;">
+					<a style="font-weight: bold;"><img src="https://cdn-icons-png.flaticon.com/128/3059/3059502.png"
+							alt="" style="width: 25px; margin: 5px;">+57 (315) 3281327</a>
+					<br>
+					<a href="mailto:ecommerce@papeleriaspectrum.com" style="font-weight: bold; color: black"><img
+							src="https://cdn-icons-png.flaticon.com/128/95/95645.png" alt=""
+							style="width: 25px; margin: 5px;">ecommerce@papeleriaspectrum.com</a>
+					<br>
+					<a th:href="@{/productos/puntos/}" style="font-weight: bold; color:black"><img
+							src="https://cdn-icons-png.flaticon.com/128/535/535188.png" alt=""
+							style="width: 25px; margin: 5px;">Puntos Atención al Cliente</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="display: inline-block; margin-top: 20px;">
+		<img src="https://img.uefa.com/imgml/2016/euro/common-elements/appstore.png?imwidth=166" alt=""
+			style="width: 110px; margin-left: 15px; margin-right: 15px;">
+		<img src="https://img.uefa.com/imgml/2016/euro/common-elements/googleplay.png?imwidth=166" alt=""
+			style="width: 110px; margin-left: 15px; margin-right: 15px;">
+	</div>
+
+	<div class="container" style="display: inline-block;">
+		<div class="">
+			<p style="margin-top: 20px;"><strong>Copyright © 2023 </strong>- Prohibida la reproducción total o parcial,
+				así
+				como su traducción
+				a cualquier idioma sin autorización escrita del titular.</p>
+			<p style="margin-top: 10px;"><strong>Creado por: </strong>Oscar Yair Pardo Pineda - Jose Daniel Ortiz Rico
+			</p>
+		</div>
+	</div>
+
+	<div>Papeleria SPECTRUM © - Powered by Mercado Shops · Design and developed by&nbsp;</div>
+</footer>
+
+</html>
