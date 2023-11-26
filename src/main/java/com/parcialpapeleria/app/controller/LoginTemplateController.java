@@ -50,7 +50,7 @@ public class LoginTemplateController {
 	
 	@PostMapping("/ingresar")
 	public String login(@RequestParam("user") String user, @RequestParam("password") String password,
-			Model model, HttpSession session) {
+			Model model) {
 		
 		List<Administrador> administradorList = administradorRepository.findAll();
 		System.out.println(administradorList.get(0).getUser());
@@ -58,8 +58,8 @@ public class LoginTemplateController {
 		if (administrador != null) {
 			// Inicio de sesión exitoso, redirigir a la página de inicio
 			System.out.println("Correo: " + administrador.getUser() + " Password:" + administrador.getPassword());
-			Administrador admin = (Administrador) session.getAttribute("administrador");
-			session.setAttribute("administrador", admin);
+
+			
 			model.addAttribute("administrador", administrador);
 			return "home/home-administrador"; // Nombre de la página de inicio (por ejemplo, "inicio.html")
 
@@ -71,8 +71,7 @@ public class LoginTemplateController {
 		if (cliente != null) {
 			// Inicio de sesión exitoso, redirigir a la página de inicio
 			System.out.println("Correo: " + cliente.getUser() + " Password:" + cliente.getPassword());
-			Cliente client = (Cliente) session.getAttribute("cliente");
-			session.setAttribute("cliente", client);
+			
 			model.addAttribute("cliente", cliente);
 			return "home/home-cliente"; // Nombre de la página de inicio (por ejemplo, "inicio.html")
 		}
@@ -83,8 +82,7 @@ public class LoginTemplateController {
 		if (empleado != null) {
 			// Inicio de sesión exitoso, redirigir a la página de inicio
 			System.out.println("Correo: " + empleado.getUser() + " Password:" + empleado.getPassword());
-			Empleado emplea = (Empleado) session.getAttribute("empleado");
-			session.setAttribute("empleado", emplea);
+			
 			model.addAttribute("empleado", empleado);
 			return "home/home-empleado"; // Nombre de la página de inicio (por ejemplo, "inicio.html")
 		}

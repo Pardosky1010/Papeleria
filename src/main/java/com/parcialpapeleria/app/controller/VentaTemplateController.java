@@ -1,6 +1,9 @@
 package com.parcialpapeleria.app.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +13,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.parcialpapeleria.app.entity.Producto;
 import com.parcialpapeleria.app.entity.Venta;
 import com.parcialpapeleria.app.repository.ProductoRepository;
 import com.parcialpapeleria.app.repository.VentaRepository;
+import com.parcialpapeleria.app.utilities.ListarVentasPdf;
+
+import jakarta.servlet.http.HttpSession;
+
 import com.parcialpapeleria.app.exception.NotFoundException;
 
 @Controller // Asegúrate de agregar la anotación @Controller
@@ -26,6 +34,9 @@ public class VentaTemplateController {
 	
 	@Autowired
 	private ProductoRepository productoRepository;
+	
+	@Autowired
+	private ListarVentasPdf listadoVentasPDF;
 	
 	@GetMapping("/")
 	public String Catalogo(Model model) {
@@ -66,4 +77,17 @@ public class VentaTemplateController {
 		model.addAttribute("productos", producto);
 		return "cliente/compras-form";
 	}
+	
+	// Metodo para generar Pdf
+		@GetMapping("/pdf")
+		public ModelAndView generarPdf(Model model) {
+
+			List<Venta> listadoVentas = ventaRepository.findAll();
+			
+			// Crea el modelo con los datos que deseas pasar a la vista PDF
+			Map<String, Object> model1 = new HashMap<>();
+			model1.put("ventas", listadoVentas);
+
+			return new ModelAndView(listadoVentasPDF, model1);
+		}
 }
